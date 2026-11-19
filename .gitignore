@@ -1,0 +1,19 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Sensitive config, runtime uploads, keys, and local IDE files
+firebase-applet-config.json
+uploads/*
+*.pem
+*.key
+*firebase-adminsdk*.json
+*service-account*.json
+*.sqlite
+.vscode/
+.idea/

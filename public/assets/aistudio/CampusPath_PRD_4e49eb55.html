@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusPath — Product Requirements Document</title>
+<style>
+:root{--bg:#f1f0f7;--surface:#fff;--ink:#17152b;--muted:#6a6784;--line:#e3e1ee;--accent:#5b4bff;--soft:#ecebff;--pink:#dd2a7b;--orange:#f58529;--green:#13866b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 "Plus Jakarta Sans",Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.top{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topin{max-width:1180px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-size:21px;font-weight:800;letter-spacing:-.6px}.logo span{background:linear-gradient(45deg,var(--orange),var(--pink),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.top small{color:var(--muted)}
+.layout{max-width:1180px;margin:26px auto;padding:0 22px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:24px;align-items:start}
+nav{position:sticky;top:78px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px}
+nav b{display:block;margin:2px 8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mut)}
+nav a{display:block;padding:8px 10px;border-radius:9px;color:var(--mut);font-size:13px}
+nav a:hover{background:var(--soft);color:var(--accent);text-decoration:none}
+main{min-width:0}.hero{padding:30px;border-radius:22px;color:#fff;background:linear-gradient(125deg,#5b4bff,#dd2a7b 62%,#f58529);box-shadow:0 12px 30px rgba(91,75,255,.14)}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;opacity:.88}
+h1{font-size:34px;line-height:1.15;letter-spacing:-1px;margin:8px 0 10px}.hero p{max-width:760px;margin:0;opacity:.94}
+.meta{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.pill{font-size:11px;font-weight:700;padding:5px 10px;border:1px solid rgba(255,255,255,.35);border-radius:20px;background:rgba(255,255,255,.13)}
+section{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;scroll-margin-top:85px}
+h2{font-size:21px;letter-spacing:-.4px;margin:0 0 12px}h3{font-size:15px;margin:19px 0 7px}p{margin:7px 0}ul,ol{padding-left:22px;margin:8px 0}li{margin:4px 0}
+.muted{color:var(--mut)}.callout{background:var(--soft);border-left:4px solid var(--accent);padding:13px 15px;border-radius:9px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:#faf9ff;border:1px solid var(--line);border-radius:12px;padding:15px}.card b{display:block;margin-bottom:4px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}th{background:#f7f6fc;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.tag{display:inline-block;padding:2px 8px;border-radius:20px;background:var(--soft);color:var(--accent);font-size:11px;font-weight:700}
+.priority{font-weight:800;color:var(--green)}.must{color:#b45309;font-weight:800}
+.footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+@media(max-width:800px){.layout{grid-template-columns:1fr;margin:14px auto}.layout nav{position:static;display:flex;overflow:auto;gap:4px;white-space:nowrap;padding:9px}.layout nav b{display:none}.layout nav a{padding:7px 9px}.hero{padding:23px}h1{font-size:28px}section{padding:18px}.grid{grid-template-columns:1fr}.topin{padding:10px 15px}}
+@media print{body{background:#fff}.top,nav{display:none}.layout{display:block;margin:0;padding:0}.hero{box-shadow:none;print-color-adjust:exact}.layout main{width:100%}section{break-inside:avoid;border:1px solid #ddd}.footer{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin"><div class="logo">Campus<span>Path</span></div><small>Product Requirements Document · Version 1.0</small></div></header>
+<div class="layout">
+<nav>
+<b>Document contents</b>
+<a href="#overview">1. Overview</a><a href="#problem">2. Problem & goals</a><a href="#users">3. Users & roles</a>
+<a href="#scope">4. Product scope</a><a href="#requirements">5. Functional requirements</a><a href="#safety">6. Trust & safety</a>
+<a href="#design">7. UX & design</a><a href="#data">8. Data & architecture</a><a href="#quality">9. Quality requirements</a>
+<a href="#metrics">10. Success metrics</a><a href="#roadmap">11. Release roadmap</a><a href="#acceptance">12. Acceptance criteria</a>
+<a href="#risks">13. Risks & assumptions</a>
+</nav>
+<main>
+<div class="hero">
+<div class="eyebrow">Product specification · College-first launch</div>
+<h1>CampusPath</h1>
+<p>A student-focused community platform for sharing knowledge, discovering opportunities, building connections and participating in college life.</p>
+<div class="meta"><span class="pill">Web application</span><span class="pill">Responsive</span><span class="pill">Student community</span><span class="pill">MVP → Scale</span></div>
+</div>
+
+<section id="overview"><h2>1. Product overview</h2>
+<p><b>Product name:</b> CampusPath</p><p><b>Product type:</b> College-focused social networking and student community platform.</p>
+<p><b>Vision:</b> Give students one trusted digital place to connect with peers, faculty and alumni; exchange academic resources; discover internships and opportunities; and share their progress.</p>
+<p><b>Initial launch:</b> One college. The product should be designed so additional colleges can be added later without rebuilding the platform.</p>
+<div class="callout"><b>Product principle:</b> CampusPath is not intended to be a general-purpose public social network. Its initial community, discovery and access rules are designed around verified college membership.</div>
+</section>
+
+<section id="problem"><h2>2. Problem statement and goals</h2>
+<h3>Problems to solve</h3><ul><li>Academic notes, useful links and learning resources are scattered across chats and groups.</li><li>Students often miss internships, events, referrals and placement updates.</li><li>Students have limited ways to discover helpful peers, seniors, professors and alumni.</li><li>Useful project experiences and interview preparation advice are difficult to find later.</li></ul>
+<h3>Product goals</h3><ul><li>Make sharing and discovering college-relevant content simple.</li><li>Help students build meaningful academic and professional connections.</li><li>Make opportunities and study resources searchable and organized.</li><li>Provide safe communication and practical reporting controls.</li><li>Launch a reliable MVP for one college, then validate demand before expanding.</li></ul>
+<h3>Non-goals for the first release</h3><ul><li>Public, unrestricted social networking across the internet.</li><li>Complex recommendation algorithms or creator monetization.</li><li>Video calling, live streaming, stories with advanced editing, or a native mobile app.</li><li>Automated claims that a LinkedIn profile alone proves college enrollment.</li></ul>
+</section>
+
+<section id="users"><h2>3. User types and permissions</h2>
+<table><thead><tr><th>Role</th><th>Purpose</th><th>Key permissions</th></tr></thead><tbody>
+<tr><td><b>Student</b></td><td>Primary platform member</td><td>Create profile and posts; upload permitted resources; react, comment, follow, message, save and report.</td></tr>
+<tr><td><b>Faculty member</b></td><td>Academic participation</td><td>Maintain a faculty profile; share academic notices/resources; interact within community rules.</td></tr>
+<tr><td><b>Alumni</b></td><td>Mentorship and opportunities</td><td>Share career guidance and opportunities; connect with eligible members, subject to role verification.</td></tr>
+<tr><td><b>Moderator</b></td><td>Community safety</td><td>Review reports; hide or remove content according to policy; apply warnings and escalate cases.</td></tr>
+<tr><td><b>Administrator</b></td><td>Platform operations</td><td>Manage colleges, roles, verification, moderation, platform settings and audit records.</td></tr>
+</tbody></table>
+<p class="muted">Role-based permissions must be enforced by the backend, not only by hiding buttons in the frontend.</p>
+</section>
+
+<section id="scope"><h2>4. Product scope and navigation</h2>
+<div class="grid">
+<div class="card"><b>Home feed</b>Posts from the user's college network, category filters and feed search.</div>
+<div class="card"><b>Messages</b>Conversation list and direct messaging between permitted members.</div>
+<div class="card"><b>Create post</b>Compose text posts and attach approved files, images or links.</div>
+<div class="card"><b>Profile</b>Academic details, bio, skills, projects, achievements and member activity.</div>
+<div class="card"><b>Discover</b>Find people, study resources, opportunities, projects and topics.</div>
+<div class="card"><b>Notifications</b>Relevant alerts for interactions, follows, messages and moderation actions.</div>
+<div class="card"><b>Saved items</b>Bookmarks for posts and resources.</div>
+<div class="card"><b>Admin console</b>Member verification, reports, content review and platform management.</div>
+</div>
+<h3>Core content categories</h3><p><span class="tag">Study materials</span> <span class="tag">Jobs & internships</span> <span class="tag">Student stories</span> <span class="tag">Interview preparation</span> <span class="tag">Projects & events</span> <span class="tag">Announcements</span></p>
+</section>
+
+<section id="requirements"><h2>5. Functional requirements</h2>
+<h3>5.1 Registration, login and student verification</h3><ul><li>Users can register, sign in, sign out and recover access.</li><li>Registration collects only necessary information, such as name, email, college and course details.</li><li>Where supported, verify college email ownership using a one-time verification link or code.</li><li>Provide an administrator-reviewed verification route for students whose college email cannot be verified automatically.</li><li>LinkedIn connection may be offered as an optional profile connection or professional identity signal. It must not be treated as proof of current student status.</li><li>Unverified users must have clearly limited access until verification is complete.</li></ul>
+<h3>5.2 Profiles</h3><ul><li>Members can edit profile photo/avatar, display name, college, branch, academic year, bio, skills, projects and achievements.</li><li>Profiles show appropriate activity such as posts and public achievements.</li><li>Users can control which optional profile fields are visible to other members.</li><li>Support profile reporting and blocking.</li></ul>
+<h3>5.3 Feed and posts</h3><ul><li>Show posts relevant to the member's college and followed accounts.</li><li>Support text, category, tags and optional attachments.</li><li>Allow like/unlike, comment, save/unsave and share-copy-link actions.</li><li>Allow post owners to edit or delete their own posts.</li><li>Provide pagination or incremental loading rather than loading the entire feed at once.</li><li>Validate text length, file type and file size on the server.</li></ul>
+<h3>5.4 File and media uploads</h3><ul><li>Support approved image formats and PDF/document uploads in the MVP.</li><li>Video upload can be enabled as a later release after storage, bandwidth, moderation and playback costs are assessed.</li><li>Show upload progress, success and failure states.</li><li>Store files privately by default where content is restricted to college members; use controlled access links.</li><li>Scan or validate uploads where suitable tools are available. Never trust a filename or browser-provided MIME type alone.</li></ul>
+<h3>5.5 Search and discovery</h3><ul><li>Search people, post titles, descriptions, tags and opportunity listings.</li><li>Filter by category, college, branch or relevant tags where permitted.</li><li>Do not expose private profile fields or private posts through search.</li></ul>
+<h3>5.6 Follow and social interactions</h3><ul><li>Members can follow and unfollow permitted profiles.</li><li>Prevent duplicate likes, follows and repeated interaction records.</li><li>Display counts consistently and update them from trusted backend data.</li></ul>
+<h3>5.7 Messaging</h3><ul><li>Support one-to-one text conversations between permitted members.</li><li>Show conversation list, message history, sent time and unread state.</li><li>Enforce conversation membership on every read and send operation.</li><li>Provide block and report controls and reasonable rate limits.</li><li>Do not imply end-to-end encryption unless it has actually been implemented and independently assessed.</li></ul>
+<h3>5.8 Notifications</h3><ul><li>Notify users about relevant follows, comments, mentions and messages.</li><li>Allow users to mark notifications as read.</li><li>Provide notification preferences where practical.</li></ul>
+<h3>5.9 Saved posts and achievements</h3><ul><li>Members can save and remove saved posts.</li><li>Members can add, edit and remove their own achievements.</li><li>Achievement labels and points must not imply official academic certification unless verified.</li></ul>
+<h3>5.10 Admin dashboard</h3><ul><li>Review verification requests and reported content.</li><li>View member status and moderation history according to assigned permissions.</li><li>Remove or restrict content/accounts with a recorded reason.</li><li>Manage college records, categories and moderator roles.</li><li>Maintain an audit log for sensitive administrative actions.</li></ul>
+</section>
+
+<section id="safety"><h2>6. Trust, safety and moderation</h2>
+<p>Safety is a launch requirement, not an optional enhancement. The platform must provide clear rules and a way to act on violations.</p>
+<h3>Required controls</h3><ul><li>Report post, comment, profile and message.</li><li>Block a member and prevent unwanted contact where technically possible.</li><li>Rate limits and anti-spam controls for registration, posting, comments and messaging.</li><li>Moderator queue with status, priority, reason and resolution notes.</li><li>Clear community guidelines covering harassment, threats, impersonation, scams, sexual exploitation, harmful content and copyright infringement.</li><li>Age-appropriate access policy and a process to handle accounts that do not meet platform eligibility rules.</li><li>Appeal or review process for significant moderation decisions.</li></ul>
+<h3>Verification and privacy</h3><ul><li>Collect the minimum information needed to establish eligibility.</li><li>Do not display student ID documents or verification evidence publicly.</li><li>Restrict access to verification records to authorized administrators.</li><li>Define retention and deletion periods for verification evidence.</li><li>Never claim that a user is verified solely because they have a LinkedIn account.</li></ul>
+<div class="callout"><b>Operational requirement:</b> Before public launch, publish community rules, privacy information, a contact/reporting route and an incident-response procedure. Obtain appropriate legal review for the intended users and operating locations.</div>
+</section>
+
+<section id="design"><h2>7. UX and visual design requirements</h2>
+<ul><li>Use the supplied <b>CampusPath.html</b> as the visual reference for the product's initial design language.</li><li>Retain the CampusPath wordmark and purple/pink/orange gradient identity.</li><li>Use a clean, rounded-card interface with readable typography and consistent spacing.</li><li>Support responsive desktop, tablet and mobile layouts.</li><li>Desktop layout: top navigation, left profile/sidebar, central feed and right discovery sidebar.</li><li>Mobile layout: compact top bar and fixed bottom navigation.</li><li>Provide light and dark themes, accessible contrast, visible focus states and keyboard navigation.</li><li>Every interactive control must have loading, success, error and empty states as appropriate.</li><li>Use confirmation for destructive actions such as deleting a post or account.</li></ul>
+<h3>Visual direction</h3><p><b>Primary accent:</b> #5B4BFF · <b>Pink:</b> #DD2A7B · <b>Orange:</b> #F58529 · <b>Font direction:</b> Plus Jakarta Sans or a comparable accessible sans-serif.</p>
+</section>
+
+<section id="data"><h2>8. Data and technical architecture</h2>
+<p>The implementation may be generated with Google AI Studio, but the delivered application must use a clear and maintainable architecture. Keep UI, business logic, server-side authorization and data access separated.</p>
+<h3>Suggested technology direction</h3><table><tbody>
+<tr><th>Layer</th><th>Suggested option</th><th>Notes</th></tr>
+<tr><td>Frontend</td><td>React + TypeScript</td><td>Reusable components and typed application logic.</td></tr>
+<tr><td>Styling</td><td>Tailwind CSS</td><td>Consistent responsive design system.</td></tr>
+<tr><td>Backend / data</td><td>Supabase or an equivalent managed backend</td><td>Database, authentication, storage and realtime features.</td></tr>
+<tr><td>Database</td><td>PostgreSQL</td><td>Relational data with constraints and indexes.</td></tr>
+<tr><td>Hosting</td><td>Suitable static/app hosting provider</td><td>Choose based on framework and backend requirements.</td></tr>
+<tr><td>Source control</td><td>GitHub</td><td>Version history, branches and code review.</td></tr>
+</tbody></table>
+<h3>Core data entities</h3><ul><li><b>users / profiles:</b> account identifier, display name, role, college and profile fields.</li><li><b>colleges:</b> college identity, approved email domains and status.</li><li><b>verification_requests:</b> status, review metadata and restricted evidence references.</li><li><b>posts:</b> author, category, text, tags, visibility and timestamps.</li><li><b>post_attachments:</b> storage reference, file type, size and access policy.</li><li><b>comments, likes, follows, saved_posts:</b> interaction records with uniqueness constraints.</li><li><b>conversations, conversation_members, messages:</b> private messaging records.</li><li><b>notifications:</b> recipient, type, source and read state.</li><li><b>reports, moderation_actions, audit_logs:</b> safety workflow and administrative traceability.</li></ul>
+<h3>Backend security rules</h3><ul><li>Enable row-level access policies or equivalent server-side authorization for every private table.</li><li>Users may modify only records they own, except authorized moderation/admin actions.</li><li>Conversation messages are visible only to conversation members and authorized processes.</li><li>Storage access must follow post/profile visibility and membership rules.</li><li>Never rely on frontend route guards as the only security control.</li><li>Keep service-role keys and other secrets on trusted server-side infrastructure.</li></ul>
+</section>
+
+<section id="quality"><h2>9. Non-functional requirements</h2>
+<table><thead><tr><th>Area</th><th>Requirement</th></tr></thead><tbody>
+<tr><td>Performance</td><td>Optimize images, paginate feeds, index common queries and avoid unnecessary requests.</td></tr>
+<tr><td>Reliability</td><td>Show graceful error states; log failures; document backup and restore procedures.</td></tr>
+<tr><td>Security</td><td>Use secure authentication, authorization, input validation, rate limiting and secret management.</td></tr>
+<tr><td>Accessibility</td><td>Keyboard-accessible controls, semantic structure, labels and readable contrast.</td></tr>
+<tr><td>Compatibility</td><td>Current major desktop and mobile browsers; responsive screen sizes.</td></tr>
+<tr><td>Maintainability</td><td>Modular components, documented environment variables and understandable code.</td></tr>
+<tr><td>Scalability</td><td>Design college membership and data access so more colleges can be added later.</td></tr>
+<tr><td>Privacy</td><td>Data minimization, access controls, retention rules and account deletion process.</td></tr>
+</tbody></table>
+</section>
+
+<section id="metrics"><h2>10. Success metrics</h2>
+<p>Track product usefulness and platform health. Do not optimize only for time spent or raw post volume.</p>
+<ul><li><b>Activation:</b> percentage of registered members who complete onboarding and verification.</li><li><b>Engagement:</b> weekly active members, meaningful posts, comments and resource saves.</li><li><b>Utility:</b> study resources opened/downloaded and opportunity posts viewed.</li><li><b>Community health:</b> reports per active member, time to review reports and repeat abuse rate.</li><li><b>Reliability:</b> error rate, page performance, failed uploads and message delivery failures.</li><li><b>Retention:</b> members who return in the following week or month.</li></ul>
+<p class="muted">Set numerical targets after collecting baseline data from the first pilot. Avoid inventing targets before usage is understood.</p>
+</section>
+
+<section id="roadmap"><h2>11. Release roadmap</h2>
+<table><thead><tr><th>Phase</th><th>Scope</th><th>Exit condition</th></tr></thead><tbody>
+<tr><td><b>Phase 0 — Foundation</b></td><td>Project setup, design system, data model, environments and access rules.</td><td>Architecture reviewed; secrets and environments configured safely.</td></tr>
+<tr><td><b>Phase 1 — MVP</b></td><td>Registration, verification workflow, profiles, feed, posts, likes, comments, saves and search.</td><td>Core flows work with real backend data and permissions tested.</td></tr>
+<tr><td><b>Phase 2 — Community</b></td><td>Follow system, messaging, notifications, reports, blocks and admin moderation.</td><td>Safety and communication flows tested end-to-end.</td></tr>
+<tr><td><b>Phase 3 — Pilot</b></td><td>Small, invited group from the first college; collect feedback and monitor operations.</td><td>Critical bugs resolved; support and moderation process functioning.</td></tr>
+<tr><td><b>Phase 4 — Expansion</b></td><td>Improve capacity and onboarding; add more colleges only after pilot validation.</td><td>Tenant separation, support, moderation and operating costs reviewed.</td></tr>
+<tr><td><b>Later enhancements</b></td><td>Video uploads, events, advanced discovery, recommendations and native apps.</td><td>Prioritized using user feedback, safety review and cost assessment.</td></tr>
+</tbody></table>
+</section>
+
+<section id="acceptance"><h2>12. MVP acceptance criteria</h2>
+<ul><li>A new eligible user can register, verify their college membership and complete a profile.</li><li>An unauthorized or unverified user cannot access restricted college content.</li><li>A member can create, edit and delete their own post.</li><li>Other permitted members can view a post and interact with it.</li><li>Search and category filters return relevant, authorized results.</li><li>File uploads enforce server-side type and size restrictions and respect access permissions.</li><li>A member can follow another member, save a post and manage those lists.</li><li>Private messages cannot be read by users outside the conversation.</li><li>Members can report and block accounts or content.</li><li>Moderators can review reports and record actions.</li><li>Administrative actions are permission-controlled and auditable.</li><li>Core screens work on supported mobile and desktop browsers.</li><li>Account deletion and data handling follow the published policy.</li><li>Critical security tests and backup/restore checks are completed before the pilot.</li></ul>
+</section>
+
+<section id="risks"><h2>13. Risks, assumptions and open decisions</h2>
+<h3>Risks</h3><ul><li><b>Fake student accounts:</b> mitigate with college email verification and a documented manual review route.</li><li><b>Abusive content or contact:</b> mitigate with reporting, blocking, moderation staffing and rate limits.</li><li><b>Data exposure:</b> mitigate with backend authorization tests, private storage and limited administrator access.</li><li><b>Hosting and media costs:</b> set file limits, monitor usage and review pricing before enabling video at scale.</li><li><b>AI-generated code defects:</b> require code review, automated tests and manual security checks before deployment.</li><li><b>Low initial adoption:</b> run a focused pilot and prioritize the features students actually use.</li></ul>
+<h3>Assumptions</h3><ul><li>The first deployment serves one college community.</li><li>The first version is a responsive website, not a native mobile application.</li><li>Students, faculty and alumni may have different role permissions.</li><li>LinkedIn is optional and is not the source of truth for college enrollment.</li><li>Video support is not required for the first MVP unless separately prioritized.</li></ul>
+<h3>Decisions to confirm before implementation</h3><ol><li>Which college(s) and email domains are included in the first pilot?</li><li>Will faculty and alumni be enabled in the first release or added later?</li><li>Who will act as moderator and how quickly should reports be reviewed?</li><li>What file types and maximum upload sizes are allowed?</li><li>What minimum age and eligibility policy will the platform enforce?</li><li>Which hosting and backend plans meet the expected pilot usage and budget?</li></ol>
+</section>
+<div class="footer">CampusPath PRD · Version 1.0 · Prepared as an implementation brief. Update decisions and requirements as the pilot provides evidence.</div>
+</main></div>
+</body></html>

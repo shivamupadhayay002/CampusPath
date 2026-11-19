@@ -1,0 +1,17 @@
+// CampusPath Local Firestore Security Rules Template (DO NOT AUTO-DEPLOY)
+//
+// CampusPath uses Cloud SQL (PostgreSQL) as its single source of truth for all
+// application profiles and data. Browser-to-Firestore writes have been removed.
+//
+// Manual Action Required:
+// Copy these rules into Firebase Console -> Firestore Database -> Rules
+// for project "campuspath-86c73" and publish them to block all direct client access.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

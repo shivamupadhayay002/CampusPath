@@ -1,0 +1,8 @@
+{
+  "name": "CampusPath",
+  "description": "A college-first student community platform for sharing study materials, interview preparation, internships, projects, and connecting with peers, faculty, and alumni.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
